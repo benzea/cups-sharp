@@ -45,7 +45,7 @@ and password. For this, add the following to the PPD:
 *OrderDependency: 23 JCLSetup *AccountLogin
 *DefaultAccountLogin: ALDBusAsk
 *AccountLogin ALKeyNone/No Username:  ""
-*AccountLogin ALDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_STRING:Anmeldename:XSHARP_ASK_STRING:XSHARP_AES_ENCRYPT<22><0A>"
+*AccountLogin ALDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_STRING:Username:XSHARP_ASK_STRING:XSHARP_AES_ENCRYPT<22><0A>"
 *CloseUI: *AccountLogin
 
 *CustomAccountLogin True: "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
@@ -53,11 +53,11 @@ and password. For this, add the following to the PPD:
 *% *****************************************************************************
 
 *% **** AccountPassword ********************************************************
-*OpenUI *AccountPassword/Passwort: PickOne
+*OpenUI *AccountPassword/Password: PickOne
 *OrderDependency: 24 JCLSetup *AccountPassword
 *DefaultAccountPassword: APDBusAsk
 *AccountPassword APKeyNone/No Password:  ""
-*AccountPassword APDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_PASSWORD:Passwort:XSHARP_ASK_PASSWORD:XSHARP_AES_ENCRYPT<22><0A>"
+*AccountPassword APDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_PASSWORD:Password:XSHARP_ASK_PASSWORD:XSHARP_AES_ENCRYPT<22><0A>"
 *CloseUI: *AccountPassword
 
 *CustomAccountPassword True: "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
