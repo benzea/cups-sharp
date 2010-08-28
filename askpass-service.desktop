@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sharp printer login data Asker
+Exec=askpass-service
+Terminal=false
+Type=Application

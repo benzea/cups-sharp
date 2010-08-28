@@ -1,0 +1,102 @@
+Sharp authenticated printing for Cups
+=====================================
+
+This module allows linux users to print to sharp machines even with
+authentication enabled. Sharp officially does not support this, but the
+encryption was successfully reverse engineered and it is therefore possible
+to implement it.
+
+NOTE: READ THE BUGS SECTION!
+
+Content:
+ * How it works
+ * Bugs
+ * Files
+ * Dependencies
+ * Installation
+ * Supporting other printers
+
+How it works
+============
+
+The PPD adds PJL comments which are later modified by the filter to actually
+set the required options.
+
+The code in the filter is run as the last step and does the
+encryption. This filter is also able to ask the user via dbus if this is
+required. This method is provided because many applications are not able to
+(properly) set Cups Custom options.
+
+askpass-service is the dbus service that every user needs to run. An
+askpass-service.desktop file to add to the autostart is provided.
+
+Bugs
+====
+
+I don't know how sane it is to do dbus calls from a filter, it feels a bit
+wrong. A better solution might be to implement this as a cups backend
+instead.
+
+Not tested is the usecase where multiple users are logged in, and the
+password needs to be asked via dbus. The current expected (but not tested)
+behaviour is that the current active X session gets the dialog.
+
+GTK+ has some bugs handling Cups Custom options. Please refere to
+https://bugzilla.gnome.org/show_bug.cgi?id=543520. There is a patch in the
+bug that fixes the issues mostly.
+Without the patch, GTK+ will likely *not work* at all. With the patch GTK+
+allows you to enter the username/password directly, or have the dbus dialog
+pop up after the print job has been send.
+
+Not all printer options may be working correctly with the PPD file.
+
+A better PPD file should have a setup to choose how the printer expects
+authentication data, if at all (ie. have the choice between no
+authentication, authentication using pin and authentication using
+username/passord.
+
+Authentication using PIN is not supported currently. This should be quite
+simple to add though.
+
+Files
+=====
+
+sharp-postprocess
+ The cups filter.
+askpass-service
+ The dbus service that each user needs to run.
+askpass-service.desktop
+ Autostart file for the service.
+sharp-askpass.conf
+ DBus configuration required so that normal users can hold a name on the
+ session bus.
+Sharp MX-M753U.ppd
+ PPD for the Sharp MX-M753U printer.
+
+Dependencies
+============
+
+ * ConsoleKIT (for DBus rights management)
+ * python DBus module (python-dbus in debian)
+ * python Crypto module (python-crypto in debian)
+ * PyGTK (python-gtk2 in debian)
+
+Installation
+============
+
+sharp-postprocess
+ Copy into Cups filter direction, /usr/lib/cups/filter/ usually
+askpass-service  
+ Copy into users PATH, eg. /usr/local/bin
+askpass-service.desktop
+ Copy into autostart directory, /etc/xdg/autostart/ usually
+sharp-askpass.conf
+ Copy into the dbus system bus configuration.
+ /etc/dbus-1/system.d/
+
+Then install the cups printer normally with the supplied PPD file.
+
+Creating PPDs for printers
+==========================
+
+Please see PPD-README.

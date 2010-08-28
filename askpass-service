@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+
+import gobject
+import os
+import dbus
+import dbus.service
+import dbus.mainloop.glib
+import gtk
+
+def show_dialog(title, elements):
+    dialog = gtk.Dialog(title="Print Options - %s" % title, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
+    dialog.set_default_response(gtk.RESPONSE_OK)
+
+    sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
+
+    entries = {}
+    for key, label_text, widget_type in elements:
+        hbox = gtk.HBox()
+        if hbox.get_direction() == gtk.TEXT_DIR_LTR:
+            label = gtk.Label(label_text + ': ')
+        else:
+            label = gtk.Label(' :' + label_text)
+        label.props.xalign = 0.0
+        sizegroup.add_widget(label)
+
+        entries[key] = gtk.Entry()
+        entries[key].props.activates_default = True
+
+        # only support password and string types
+        assert widget_type in ['PASSWORD', 'STRING']
+        if widget_type == 'PASSWORD':
+            entries[key].props.caps_lock_warning = True
+            entries[key].props.visibility = False
+
+        hbox.add(label)
+        hbox.add(entries[key])
+        dialog.vbox.add(hbox)
+
+    dialog.show_all()
+    dialog.present()
+    if dialog.run() != gtk.RESPONSE_OK:
+        dialog.destroy()
+        return {}
+
+    result = {}
+    for key, widget in entries.iteritems():
+        result[key] = widget.get_text()
+
+    dialog.destroy()
+
+    return result
+
+class PasswordAsker(dbus.service.Object):
+
+    @dbus.service.method("org.cups.sharp.Passwd",
+                         in_signature='sa(sss)', out_signature='a{ss}')
+    def Ask(self, title, elements):
+        return show_dialog(title, elements)
+
+if __name__ == '__main__':
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+    bus = dbus.SystemBus()
+    name = dbus.service.BusName("org.cups.sharp.Passwd", bus=bus, allow_replacement=True, replace_existing=True)
+    object = PasswordAsker(bus, "/org/cups/sharp/Passwd")
+
+    mainloop = gobject.MainLoop()
+    mainloop.run()
+

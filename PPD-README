@@ -1,0 +1,70 @@
+Creating PPDs for printers
+==========================
+
+For legal reasons no PPD is included with this package currently. The only
+PPD in production use is based on a PPD for Mac OSX, and the license
+situation to redistribute this is not clear.
+
+Adding support to exiting PPDs for other sharp printers should be pretty
+straight forward though. Please be aware, that this guide was created by
+someone with little knowledge about PPDs. There may be quirks, unneccary
+steps, things that are plainly wrong or the guide is missing things ...
+
+
+First of all set some cups specific options. These should be put in the
+header section:
+*cupsVersion:           1.0
+*cupsManualCopies:      False
+*cupsModelNumber:       1
+*cupsFilter:           "application/vnd.cups-postscript 100 sharp-postprocess"
+
+Note: Only set ManualCopies to False, if you add the QTY dummy later on, and
+your printer supports this @PJL QTY option.
+
+Next we need to setup the PJL correctly. You will likely have these options
+already set in the PPD file somewhere, if that is the case modify them.
+What we do here, is to add placeholders into the PJL header, that are later
+on replaced by the postprocess script.
+*Protocols: PJL
+*JCLBegin: "<1B>%-12345X@PJL JOB<0A>"
+*JCLToPSInterpreter: "@PJL COMMENT XSHARP_USERNAME=<22>XSHARP_USERNAME<22><0A>@PJL COMMENT XSHARP_SPOOLTIME=<22>XSHARP_SPOOLTIME<22><0A>@PJL ENTER LANGUAGE = POSTSCRIPT <0A>"
+*JCLEnd: "<1B>%-12345X@PJL EOJ<0A><1B>%-12345X"
+
+The postprocessor will replace these comments with the real commands
+(ie. @PJL COMMENT XSHARP_USERNAME="XSHARP_USERNAME" is replaced with
+@PJL USERNAME="unixuser")
+
+
+The next thing we need to do is to add the ability to specify the username
+and password. For this, add the following to the PPD:
+
+*OpenGroup: Authentication/User Authentication
+
+*% **** AccountLogin ***********************************************************
+*OpenUI *AccountLogin/Username: PickOne
+*OrderDependency: 23 JCLSetup *AccountLogin
+*DefaultAccountLogin: ALDBusAsk
+*AccountLogin ALKeyNone/No Username:  ""
+*AccountLogin ALDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_STRING:Anmeldename:XSHARP_ASK_STRING:XSHARP_AES_ENCRYPT<22><0A>"
+*CloseUI: *AccountLogin
+
+*CustomAccountLogin True: "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
+*ParamCustomAccountLogin Login/Username: 1 string 0 255
+*% *****************************************************************************
+
+*% **** AccountPassword ********************************************************
+*OpenUI *AccountPassword/Passwort: PickOne
+*OrderDependency: 24 JCLSetup *AccountPassword
+*DefaultAccountPassword: APDBusAsk
+*AccountPassword APKeyNone/No Password:  ""
+*AccountPassword APDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_PASSWORD:Passwort:XSHARP_ASK_PASSWORD:XSHARP_AES_ENCRYPT<22><0A>"
+*CloseUI: *AccountPassword
+
+*CustomAccountPassword True: "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
+*ParamCustomAccountPassword Password/Passwort: 1 password 0 31
+*% *****************************************************************************
+
+*CloseGroup: Authentication
+
+
+That should be all that is neccessary.
