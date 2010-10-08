@@ -42,7 +42,7 @@ def encrypt(passwd, spooltime):
     missing = 16 - len(passwd) % 16
     passwd += '\0'*missing
 
-    aes = AES.new(key=key)
+    aes = AES.new(key=key, mode=AES.MODE_ECB)
     encrypted = aes.encrypt(passwd)
     encrypted = base64.encodestring(encrypted).strip()
 
