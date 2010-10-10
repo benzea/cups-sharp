@@ -37,6 +37,10 @@
 *Throughput: "75"
 *LandscapeOrientation: Plus90
 *TTRasterizer: Type42
+*cupsVersion:           1.0
+*cupsManualCopies:      False
+*cupsModelNumber:       1
+*cupsFilter:           "application/vnd.cups-postscript 100 sharp-postprocess"
 *% Driver-defined attributes...
 *1284Modes Parallel: Compat Nibble
 *AccurateScreensSupport: False
@@ -56,8 +60,8 @@
 *FreeVM: "32767000"
 *HWMargins: "12 12 12 12"
 *JCLBegin: "<1B>%-12345X@PJL JOB<0A>"
+*JCLToPSInterpreter: "@PJL COMMENT XSHARP_USERNAME=<22>XSHARP_USERNAME<22><0A>@PJL COMMENT XSHARP_SPOOLTIME=<22>XSHARP_SPOOLTIME<22><0A>@PJL ENTER LANGUAGE = POSTSCRIPT <0A>"
 *JCLEnd: "<1B>%-12345X@PJL EOJ<0A><1B>%-12345X"
-*JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT <0A>"
 *Password: "(0)"
 *Protocols: PJL
 *RequiresPageRegion All: True
@@ -114,6 +118,26 @@
 *UIConstraints: *Option1 SSFinisher		*OutputBin Output2
 *% ---- Punch Module -----------------------------------------------------------
 *UIConstraints: *Option9 NotInstalled		*ARPunch True
+
+*% **** Authentication
+
+*UIConstraints: *Option10 NoAuthentication	*AccountLogin ALDBusAsk
+*UIConstraints: *Option10 NoAuthentication	*AccountLogin ALInput
+*UIConstraints: *Option10 NoAuthentication	*AccountPassword APDBusAsk
+*UIConstraints: *Option10 NoAuthentication	*AccountPassword APDInput
+*UIConstraints: *Option10 NoAuthentication	*AccountNumber ANDBusAsk
+*UIConstraints: *Option10 NoAuthentication	*AccountNumber ANInput
+
+*UIConstraints: *Option10 PINAuthentication	*AccountLogin ALDBusAsk
+*UIConstraints: *Option10 PINAuthentication	*AccountLogin ALInput
+*UIConstraints: *Option10 PINAuthentication	*AccountPassword APDBusAsk
+*UIConstraints: *Option10 PINAuthentication	*AccountPassword APInput
+*UIConstraints: *Option10 PINAuthentication	*AccountNumber ANKeyNone
+
+*UIConstraints: *Option10 AccountAuthentication	*AccountNumber ANDBusAsk
+*UIConstraints: *Option10 AccountAuthentication	*AccountNumber ANInput
+*UIConstraints: *Option10 AccountAuthentication	*AccountLogin ALKeyNone
+*UIConstraints: *Option10 AccountAuthentication	*AccountPassword APKeyNone
 
 *% **** Option <---> Option ****************************************************
 *% ---- InputSlot <---> PageSize -----------------------------------------------
@@ -716,6 +740,14 @@
 *End
 *CloseUI: *Option9
 
+*OpenUI *Option10/Authentication: PickOne
+*OrderDependency: 0.0 AnySetup *Option10
+*DefaultOption10: NoAuthentication
+*Option10 NoAuthentication/No Authentication: ""
+*Option10 PINAuthentication/Authentication using PIN: ""
+*Option10 AccountAuthentication/Authentication using Username and Password: ""
+*CloseUI: *Option10
+
 *CloseGroup: InstallableOptions
 
 *OpenGroup: Advanced/Advanced
@@ -850,6 +882,47 @@
 *CloseUI: *ARBooklet
 
 *CloseGroup: OutputControl
+
+*OpenGroup: Authentication/User Authentication
+
+*% **** AccountLogin ***********************************************************
+*OpenUI *AccountLogin/Username: PickOne
+*OrderDependency: 23 JCLSetup *AccountLogin
+*DefaultAccountLogin: ALKeyNone
+*AccountLogin ALKeyNone/No Username:  ""
+*AccountLogin ALDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_STRING:Username:XSHARP_ASK_STRING:XSHARP_AES_ENCRYPT<22><0A>"
+*CloseUI: *AccountLogin
+
+*CustomAccountLogin True: "@PJL COMMENT XSHARP_ACCOUNTLOGIN=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
+*ParamCustomAccountLogin ALInput/Username: 1 string 0 255
+*% *****************************************************************************
+
+*% **** AccountPassword ********************************************************
+*OpenUI *AccountPassword/Password: PickOne
+*OrderDependency: 24 JCLSetup *AccountPassword
+*DefaultAccountPassword: APKeyNone
+*AccountPassword APKeyNone/No Password:  ""
+*AccountPassword APDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:XSHARP_ASK_PASSWORD:Password:XSHARP_ASK_PASSWORD:XSHARP_AES_ENCRYPT<22><0A>"
+*CloseUI: *AccountPassword
+
+*CustomAccountPassword True: "@PJL COMMENT XSHARP_ACCOUNTPASSWORD=<22>XSHARP_AES_ENCRYPT:\1:XSHARP_AES_ENCRYPT<22><0A>"
+*ParamCustomAccountPassword APInput/Password: 1 password 0 31
+*% *****************************************************************************
+
+*% **** AccountNumber **********************************************************
+*OpenUI *AccountNumber/Account Number: PickOne
+*OrderDependency: 24 JCLSetup *AccountNumber
+*DefaultAccountNumber: ANKeyNone
+*AccountNumber ANKeyNone/No Account Number:  ""
+*AccountNumber ANDBusAsk/Ask Later:    "@PJL COMMENT XSHARP_ACCOUNTNUMBER=<22>XSHARP_ASK_PASSCODE:5;5;Account Number:XSHARP_ASK_PASSCODE<22><0A>"
+*CloseUI: *AccountNumber
+
+*CustomAccountNumber True: "@PJL COMMENT XSHARP_ACCOUNTNUMBER=<22>\1<22><0A>"
+*ParamCustomAccountNumber ANInput/Account Number: 1 passcode 5 5
+*% *****************************************************************************
+
+*CloseGroup: Authentication
+
 
 *OpenGroup: Watermark/Watermarks
 
