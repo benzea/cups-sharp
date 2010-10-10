@@ -28,8 +28,9 @@ def ask_user(title, questions):
         del iface
         del remote_object
         del bus
-    except dbus.DBusException:
+    except dbus.DBusException, e:
         sys.stderr.write("ERROR: Could not ask user for authentication data.\n")
+        sys.stderr.write(str(e))
         return None
 
     return reply
@@ -65,6 +66,7 @@ option_regex = re.compile("^@PJL\s*COMMENT\s*XSHARP_(?P<option>.*?)\s*=\s*(?P<ar
 aes_encrypt_regex = re.compile("XSHARP_AES_ENCRYPT:(?P<input>.*?):XSHARP_AES_ENCRYPT")
 askpass_regex = re.compile("XSHARP_ASK_PASSWORD:(?P<label>.*?):XSHARP_ASK_PASSWORD")
 askuser_regex = re.compile("XSHARP_ASK_STRING:(?P<label>.*?):XSHARP_ASK_STRING")
+askpin_regex = re.compile("XSHARP_ASK_PASSCODE:(?P<label>.*?):XSHARP_ASK_PASSCODE")
 
 
 # ****************************************
@@ -79,6 +81,8 @@ def replace_argument(opt, arg, user_input=None):
             input_needed.append((opt+'::'+label, label, 'PASSWORD'))
         for label in askuser_regex.findall(arg):
             input_needed.append((opt+'::'+label, label, 'STRING'))
+        for label in askpin_regex.findall(arg):
+            input_needed.append((opt+'::'+label, label, 'PASSCODE'))
         if len(input_needed) > 0:
             return None, input_needed
 
@@ -95,6 +99,11 @@ def replace_argument(opt, arg, user_input=None):
         if user_input is not None and user_input.has_key(opt+'::'+match.group('label')):
             return user_input[opt+'::'+match.group('label')]
     arg, cnt = askuser_regex.subn(askuser_replace, arg)
+
+    def askpin_replace(match):
+        if user_input is not None and user_input.has_key(opt+'::'+match.group('label')):
+            return user_input[opt+'::'+match.group('label')]
+    arg, cnt = askpin_regex.subn(askpin_replace, arg)
 
     def regex_encrypt(match):
         return encrypt(match.group("input"), spooltime)

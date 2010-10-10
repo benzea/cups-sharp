@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import gobject
 import os
@@ -7,55 +8,100 @@ import dbus.service
 import dbus.mainloop.glib
 import gtk
 
-def show_dialog(title, elements):
-    dialog = gtk.Dialog(title="Print Options - %s" % title, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
-    dialog.set_default_response(gtk.RESPONSE_OK)
-
-    sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
-
-    entries = {}
-    for key, label_text, widget_type in elements:
-        hbox = gtk.HBox()
-        if hbox.get_direction() == gtk.TEXT_DIR_LTR:
-            label = gtk.Label(label_text + ': ')
-        else:
-            label = gtk.Label(' :' + label_text)
-        label.props.xalign = 0.0
-        sizegroup.add_widget(label)
-
-        entries[key] = gtk.Entry()
-        entries[key].props.activates_default = True
-
-        # only support password and string types
-        assert widget_type in ['PASSWORD', 'STRING']
-        if widget_type == 'PASSWORD':
-            entries[key].props.caps_lock_warning = True
-            entries[key].props.visibility = False
-
-        hbox.add(label)
-        hbox.add(entries[key])
-        dialog.vbox.add(hbox)
-
-    dialog.show_all()
-    dialog.present()
-    if dialog.run() != gtk.RESPONSE_OK:
-        dialog.destroy()
-        return {}
-
-    result = {}
-    for key, widget in entries.iteritems():
-        result[key] = widget.get_text()
-
-    dialog.destroy()
-
-    return result
-
 class PasswordAsker(dbus.service.Object):
 
     @dbus.service.method("org.cups.sharp.Passwd",
                          in_signature='sa(sss)', out_signature='a{ss}')
     def Ask(self, title, elements):
-        return show_dialog(title, elements)
+        self.title = title
+        self.elements = elements
+
+        return self.show_dialog()
+
+    def check_entries(self, *args):
+        all_valid = True
+        for key, arguments, widget_type in self.elements:
+            valid = True
+            if widget_type in ['PASSWORD', 'STRING', 'PASSCODE']:
+                args = arguments.split(';')
+                min_length = 0
+                max_length = 9999
+                if len(args) == 3:
+                    min_length = int(args[0])
+                    max_length = int(args[1])
+                text = self.entries[key].get_text()
+                if (len(text) < min_length) or (len(text) > max_length):
+                    valid = False
+
+                if widget_type == 'PASSCODE':
+                    if not text.isdigit():
+                        valid = False
+
+            if not valid:
+                # TODO: Show what entry is causing the troubles
+                all_valid = False
+
+        box = self.dialog.get_action_area()
+        box.get_children()[0].set_sensitive(all_valid)
+
+    def show_dialog(self):
+        self.dialog = gtk.Dialog(title=u"%s — Print Options" % self.title, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
+        self.dialog.set_default_response(gtk.RESPONSE_OK)
+
+        sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
+
+        self.entries = {}
+        for key, arguments, widget_type in self.elements:
+            # only support password and string types
+            assert widget_type in ['PASSWORD', 'STRING', 'PASSCODE']
+
+            entry_caps_lock_warning = False
+            entry_visibility = True
+
+            # The last element is the string
+            label_text = arguments.split(';')[-1]
+
+            if widget_type == 'PASSWORD':
+                entry_caps_lock_warning = True
+                entry_visibility = False
+            elif widget_type == 'PASSCODE':
+                entry_visibility = False
+
+            hbox = gtk.HBox()
+            if hbox.get_direction() == gtk.TEXT_DIR_LTR:
+                label = gtk.Label(label_text + ': ')
+            else:
+                label = gtk.Label(' :' + label_text)
+            label.props.xalign = 0.0
+            sizegroup.add_widget(label)
+
+            self.entries[key] = gtk.Entry()
+            self.entries[key].connect("changed", self.check_entries)
+            self.entries[key].props.activates_default = True
+            self.entries[key].props.caps_lock_warning = entry_caps_lock_warning
+            self.entries[key].props.visibility = entry_visibility
+
+            hbox.add(label)
+            hbox.add(self.entries[key])
+            self.dialog.vbox.add(hbox)
+
+        self.check_entries()
+
+        self.dialog.show_all()
+        self.dialog.present()
+        if self.dialog.run() != gtk.RESPONSE_OK:
+            self.dialog.destroy()
+            return {}
+
+        result = {}
+        for key, widget in self.entries.iteritems():
+            result[key] = widget.get_text()
+
+        self.dialog.destroy()
+
+        return result
+
+
 
 if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
