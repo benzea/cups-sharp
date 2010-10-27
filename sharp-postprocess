@@ -22,7 +22,7 @@ def ask_user(title, questions):
 
         iface = dbus.Interface(remote_object, "org.cups.sharp.Passwd")
 
-        reply = iface.Ask(title, questions)
+        reply = iface.Ask(title, questions, timeout=3600)
 
         # Destroy the dbus objects ...
         del iface
