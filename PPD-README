@@ -1,10 +1,6 @@
 Creating PPDs for printers
 ==========================
 
-For legal reasons no PPD is included with this package currently. The only
-PPD in production use is based on a PPD for Mac OSX, and the license
-situation to redistribute this is not clear.
-
 Adding support to exiting PPDs for other sharp printers should be pretty
 straight forward though. Please be aware, that this guide was created by
 someone with little knowledge about PPDs. There may be quirks, unneccary
