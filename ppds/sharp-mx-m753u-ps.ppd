@@ -828,7 +828,7 @@
 *OpenUI *Filing/Filing: PickOne
 *OrderDependency: 10.0 JCLSetup *Filing
 *DefaultFiling: Normal
-*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A>"
+*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A><0A>"
 *Filing FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
@@ -843,11 +843,11 @@
 *ParamCustomFilingFolder FFInput/Username: 1 string 0 255
 
 *OpenUI *FilingPin/Filing PIN: PickOne
-*OrderDependency: 10.1 JCLSetup *FilingFolder
-*DefaultFilingFolder: FPNoPin
-*FilingFolder FPNoPin/No Protection:  "@PJL SET HOLDTYPE=PUBLIC<0A>"
-*FilingFolder FPDBusAsk/Ask Later:  "@PJL SET HOLDTYPE=PRIVATE<0A>@PJL COMMENT XSHARP_HOLDKEY=<22>XSHARP_ASK_PASSCODE:4;5;Filing PIN:XSHARP_ASK_PASSCODE<22><0A>"
-*CloseUI: *FilingFolder
+*OrderDependency: 10.1 JCLSetup *FilingPin
+*DefaultFilingPin: FPNoPin
+*FilingPin FPNoPin/No Protection:  "@PJL SET HOLDTYPE=PUBLIC<0A>"
+*FilingPin FPDBusAsk/Ask Later:  "@PJL SET HOLDTYPE=PRIVATE<0A>@PJL COMMENT XSHARP_HOLDKEY=<22>XSHARP_ASK_PASSCODE:4;5;Filing PIN:XSHARP_ASK_PASSCODE<22><0A>"
+*CloseUI: *FilingPin
 *CustomFilingPin True: "@PJL SET HOLDTYPE=PRIVATE<0A>@PJL SET HOLDKEY = <22>\1<22><0A>"
 *ParamCustomFilingPin FPInput/PIN: 1 passcode 4 5
 
