@@ -330,6 +330,12 @@
 *UIConstraints: *InputSlot A3LCT		*MediaType UserSet6
 *UIConstraints: *InputSlot A3LCT		*MediaType UserSet7
 
+*% ---- Filing
+
+*UIConstraints: *Filing FNormal			*FilingFolder FFInput
+*UIConstraints: *Filing FNormal			*FilingPin FPDBusAsk
+*UIConstraints: *Filing FNormal			*FilingPin FPInput
+
 *% ---- OutputBin <---> PageSize -----------------------------------------------
 *% ---- Center Tray -> All
 *% ---- Finisher Upper Tray
@@ -815,16 +821,37 @@
 *ARPrintMode Fine/Fine:		"userdict /ARPrintMode 0 put"
 *CloseUI: *ARPrintMode
 
+*CloseGroup: Advanced
+
+*OpenGroup: FilingControl/Filing
+
 *OpenUI *Filing/Filing: PickOne
 *OrderDependency: 10.0 JCLSetup *Filing
 *DefaultFiling: Normal
-*Filing Normal/Normal Print:  "@PJL SET HOLD = OFF<0A>"
-*Filing After/Store after Printing:     "@PJL SET HOLD = ON<0A>@PJL SET FILINGFOLDERPATH = <22>*standard<22><0A>"
-*Filing Hold/Store only:              "@PJL SET HOLD = STORE<0A>@PJL SET FILINGFOLDERPATH = <22>*standard<22><0A>"
-*Filing Proof/Print first copy and store:    "@PJL SET HOLD = PROOF<0A>@PJL SET FILINGFOLDERPATH = <22>*standard<22><0A>"
+*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF"
+*Filing FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
+*Filing FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
+*Filing FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
 *CloseUI: *Filing
 
-*CloseGroup: Advanced
+*OpenUI *FilingFolder/Filing Folder: PickOne
+*OrderDependency: 10.1 JCLSetup *FilingFolder
+*DefaultFilingFolder: FFStandard
+*FilingFolder FFStandard/Standard Folder:  "@PJL SET FILINGFOLDERPATH = <22>*standard<22><0A>"
+*CloseUI: *FilingFolder
+*CustomFilingFolder True: "@PJL SET FILINGFOLDERPATHW = <22>\1<22><0A>"
+*ParamCustomFilingFolder FFInput/Username: 1 string 0 255
+
+*OpenUI *FilingPin/Filing PIN: PickOne
+*OrderDependency: 10.1 JCLSetup *FilingFolder
+*DefaultFilingFolder: FPNoPin
+*FilingFolder FPNoPin/No Protection:  "@PJL SET HOLDTYPE=PUBLIC<0A>"
+*FilingFolder FPDBusAsk/Ask Later:  "@PJL SET HOLDTYPE=PRIVATE<0A>@PJL COMMENT XSHARP_HOLDKEY=<22>XSHARP_ASK_PASSCODE:4;5;Filing PIN:XSHARP_ASK_PASSCODE<22><0A>"
+*CloseUI: *FilingFolder
+*CustomFilingPin True: "@PJL SET HOLDTYPE=PRIVATE<0A>@PJL SET HOLDKEY = <22>\1<22><0A>"
+*ParamCustomFilingPin FPInput/PIN: 1 passcode 4 5
+
+*CloseGroup: FilingControl
 
 *OpenGroup: OutputControl/Output
 
