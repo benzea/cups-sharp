@@ -828,7 +828,7 @@
 *OpenUI *Filing/Filing: PickOne
 *OrderDependency: 10.0 JCLSetup *Filing
 *DefaultFiling: Normal
-*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF"
+*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A>"
 *Filing FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
