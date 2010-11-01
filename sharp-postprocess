@@ -8,32 +8,47 @@ import time
 import re
 import fcntl
 import select
+import pwd
 
 # ****************************************
 
-def ask_user(title, questions):
+def ask_user(title, questions, username):
     import dbus
+
+    user = pwd.getpwnam(username)
+    if user is None:
+        return None
+    uid = user[2]
 
     try:
         bus = dbus.SystemBus()
 
-        remote_object = bus.get_object("org.cups.sharp.Passwd",
-                                       "/org/cups/sharp/Passwd")
+        bus_object = bus.get_object('org.freedesktop.DBus',
+                                    '/org/freedesktop/DBus')
+        bus_iface = dbus.Interface(bus_object, 'org.freedesktop.DBus')
+        owners = bus_iface.ListQueuedOwners('org.cups.sharp.Passwd')
 
-        iface = dbus.Interface(remote_object, "org.cups.sharp.Passwd")
 
-        reply = iface.Ask(title, questions, timeout=3600)
+        for owner in owners:
+            remote_uid = bus_iface.GetConnectionUnixUser(owner)
+            # Only send request to the correct user.
+            if remote_uid != uid:
+                continue
 
-        # Destroy the dbus objects ...
-        del iface
-        del remote_object
-        del bus
+            remote_object = bus.get_object(owner, '/org/cups/sharp/Passwd')
+
+            iface = dbus.Interface(remote_object, "org.cups.sharp.Passwd")
+            reply = iface.Ask(title, questions, timeout=3600)
+
+            # We got a reply, so we are done!
+            return reply
+        sys.stderr.write("ERROR: User does not seem to have the service running.\n")
     except dbus.DBusException, e:
         sys.stderr.write("ERROR: Could not ask user for authentication data.\n")
         sys.stderr.write(str(e))
         return None
 
-    return reply
+    return None
 
 # ****************************************
 
@@ -140,7 +155,7 @@ while True:
     if line.startswith("@PJL ENTER"):
         # We may need to get input from the user ...
         if input_needed:
-            user_input = ask_user(jobname, input_needed)
+            user_input = ask_user(jobname, input_needed, user)
             # catch errors ...
             if user_input is None:
                 user_input = {}
