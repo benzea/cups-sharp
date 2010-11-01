@@ -37,10 +37,6 @@ I don't know how sane it is to do dbus calls from a filter, it feels a bit
 wrong. A better solution might be to implement this as a cups backend
 instead.
 
-Not tested is the usecase where multiple users are logged in, and the
-password needs to be asked via dbus. The current expected (but not tested)
-behaviour is that the current active X session gets the dialog.
-
 GTK+ has some bugs handling Cups Custom options. Please refere to
 https://bugzilla.gnome.org/show_bug.cgi?id=543520. There is a patch in the
 bug that fixes the issues mostly.
@@ -50,13 +46,9 @@ pop up after the print job has been send.
 
 Not all printer options may be working correctly with the PPD file.
 
-A better PPD file should have a setup to choose how the printer expects
-authentication data, if at all (ie. have the choice between no
-authentication, authentication using pin and authentication using
-username/passord.
-
-Authentication using PIN is not supported currently. This should be quite
-simple to add though.
+It would be nice to hide unneeded authentication data easily. I tried to do
+this using installed options, but the useless fields still show up in the
+print dialog.
 
 Files
 =====
