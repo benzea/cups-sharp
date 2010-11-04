@@ -1110,8 +1110,8 @@
 *DP1Pos DP1POLast/Back Page:                   "@PJL SET BACKCOVER = <22>"
 *CloseUI: *DP1Pos
 
-*%CustomDP1Pos True: "@PJL SET INSERTSHEET = <22>\1"
-*%ParamCustomDP1Pos DP1POAny/Page: 1 int 0 255
+*CustomDP1Pos True: "@PJL SET INSERTSHEET = <22>\1"
+*ParamCustomDP1Pos DP1POAny/Page: 1 int 0 255
 
 *OpenUI *DP1Printed/Printing on: PickOne
 *OrderDependency: 100.1 JCLSetup *DP1Printed
