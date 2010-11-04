@@ -1100,7 +1100,7 @@
 
 *CloseGroup: Watermark
 
-*OpenGroup: DifferentPaper1/One Page Different
+*OpenGroup: DifferentPaper1/One Page Different (1)
 
 *OpenUI *DP1Pos/Inserted Page Position: PickOne
 *OrderDependency: 100.0 JCLSetup *DP1Pos
@@ -1155,8 +1155,64 @@
 *DP1Type DP1TGlossy/Glossy:              "37%0<22><0A>"
 *CloseUI: *DP1Type
 
-
 *CloseGroup: DifferentPaper1
+
+*OpenGroup: DifferentPaper2/One Page Different (2)
+
+*OpenUI *DP2Pos/Inserted Page Position: PickOne
+*OrderDependency: 101.0 JCLSetup *DP2Pos
+*DefaultDP2Pos: DP2PONone
+*DP2Pos DP2PONone/No Page:                   "@PJL COMMENT "
+*DP2Pos DP2POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
+*DP2Pos DP2POLast/Back Page:                   "@PJL SET BACKCOVER = <22>"
+*CloseUI: *DP2Pos
+
+*CustomDP2Pos True: "@PJL SET INSERTSHEET = <22>\1"
+*ParamCustomDP2Pos DP2POAny/Page: 1 int 0 255
+
+*OpenUI *DP2Printed/Printing on: PickOne
+*OrderDependency: 101.1 JCLSetup *DP2Printed
+*DefaultDP2Printed: DP2PRNo
+*DP2Printed DP2PRNo/No Printing:              "B#"
+*DP2Printed DP2PRFront/Front:                 "SF#"
+*DP2Printed DP2PRBack/Back:                   "SB#"
+*DP2Printed DP2PRBoth/Both:                   "D#"
+*CloseUI: *DP2Printed
+
+*OpenUI *DP2Source/Tray: PickOne
+*OrderDependency: 101.2 JCLSetup *DP2Source
+*DefaultDP2Source: DP2SAuto
+*DP2Source DP2SAuto/Auto:                 "0$"
+*DP2Source DP2STray1/Tray 1:              "1$"
+*DP2Source DP2STray2/Tray 2:              "2$"
+*DP2Source DP2STray3/Tray 3:              "3$"
+*DP2Source DP2STray4/Tray 4:              "4$"
+*DP2Source DP2SBypass/Bypass Tray:        "6$"
+*DP2Source DP2SInserter/Inserter:         "7$"
+*CloseUI: *DP2Source
+
+*OpenUI *DP2Type/Paper Type: PickOne
+*OrderDependency: 101.3 JCLSetup *DP2Type
+*DefaultDP2Type: DP2TIgnore
+*DP2Type DP2TIgnore/Ignore:               "0%0<22><0A>"
+*DP2Type DP2TAuto/Auto:                   "1%0<22><0A>"
+*DP2Type DP2TPlain/Plain:                 "2%0<22><0A>"
+*DP2Type DP2TLetterhead/Letterhead:       "3%0<22><0A>"
+*DP2Type DP2TRecycle/Recycle:             "4%0<22><0A>"
+*DP2Type DP2TPrePrint/Pre Print:          "5%0<22><0A>"
+*DP2Type DP2TPrePunch/Pre Punch:          "6%0<22><0A>"
+*DP2Type DP2TColor/Color:                 "7%0<22><0A>"
+*DP2Type DP2TBond/Bond:                   "8%0<22><0A>"
+*DP2Type DP2TLabel/Label:                 "9%0<22><0A>"
+*DP2Type DP2TTransparency/Transparency:  "10%0<22><0A>"
+*DP2Type DP2TTab/tab:                    "11%0<22><0A>"
+*DP2Type DP2TThin/Thin:                  "31%0<22><0A>"
+*DP2Type DP2TPostcard/Postcard:          "33%0<22><0A>"
+*DP2Type DP2TBond2/Bond2:                "34%0<22><0A>"
+*DP2Type DP2TGlossy/Glossy:              "37%0<22><0A>"
+*CloseUI: *DP2Type
+
+*CloseGroup: DifferentPaper2
 
 *OpenGroup: FoldingSettings/Paper Folding Settings
 
