@@ -1100,10 +1100,22 @@
 
 *CloseGroup: Watermark
 
+*OpenGroup: FoldingSettings/Paper Folding Settings
+
+*OpenUI *ARFold/Fold: PickOne
+*OrderDependency: 100 AnySetup *ARFold
+*DefaultARFold: FoldOff
+*ARFold FoldOff/Off:				""
+*ARFold FoldInside/Half Fold - Inside:		"<</Fold [1 [0]]>> setpagedevice"
+*ARFold FoldOutside/Half Fold - Outside:	"<</Fold [1 [1]]>> setpagedevice"
+*CloseUI: *ARFold
+
+*CloseGroup: FoldingSettings
+
 *OpenGroup: DifferentPaper1/One Page Different (1)
 
 *OpenUI *DP1Pos/Inserted Page Position: PickOne
-*OrderDependency: 100.0 JCLSetup *DP1Pos
+*OrderDependency: 200.0 JCLSetup *DP1Pos
 *DefaultDP1Pos: DP1PONone
 *DP1Pos DP1PONone/No Page:                   "@PJL COMMENT "
 *DP1Pos DP1POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
@@ -1114,7 +1126,7 @@
 *ParamCustomDP1Pos DP1POAny/Page: 1 int 0 255
 
 *OpenUI *DP1Printed/Printing on: PickOne
-*OrderDependency: 100.1 JCLSetup *DP1Printed
+*OrderDependency: 200.1 JCLSetup *DP1Printed
 *DefaultDP1Printed: DP1PRNo
 *DP1Printed DP1PRNo/No Printing:              "B#"
 *DP1Printed DP1PRFront/Front:                 "SF#"
@@ -1123,7 +1135,7 @@
 *CloseUI: *DP1Printed
 
 *OpenUI *DP1Source/Tray: PickOne
-*OrderDependency: 100.2 JCLSetup *DP1Source
+*OrderDependency: 200.2 JCLSetup *DP1Source
 *DefaultDP1Source: DP1SAuto
 *DP1Source DP1SAuto/Auto:                 "0$"
 *DP1Source DP1STray1/Tray 1:              "1$"
@@ -1135,7 +1147,7 @@
 *CloseUI: *DP1Source
 
 *OpenUI *DP1Type/Paper Type: PickOne
-*OrderDependency: 100.3 JCLSetup *DP1Type
+*OrderDependency: 200.3 JCLSetup *DP1Type
 *DefaultDP1Type: DP1TIgnore
 *DP1Type DP1TIgnore/Ignore:               "0%0<22><0A>"
 *DP1Type DP1TAuto/Auto:                   "1%0<22><0A>"
@@ -1160,7 +1172,7 @@
 *OpenGroup: DifferentPaper2/One Page Different (2)
 
 *OpenUI *DP2Pos/Inserted Page Position: PickOne
-*OrderDependency: 101.0 JCLSetup *DP2Pos
+*OrderDependency: 201.0 JCLSetup *DP2Pos
 *DefaultDP2Pos: DP2PONone
 *DP2Pos DP2PONone/No Page:                   "@PJL COMMENT "
 *DP2Pos DP2POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
@@ -1171,7 +1183,7 @@
 *ParamCustomDP2Pos DP2POAny/Page: 1 int 0 255
 
 *OpenUI *DP2Printed/Printing on: PickOne
-*OrderDependency: 101.1 JCLSetup *DP2Printed
+*OrderDependency: 201.1 JCLSetup *DP2Printed
 *DefaultDP2Printed: DP2PRNo
 *DP2Printed DP2PRNo/No Printing:              "B#"
 *DP2Printed DP2PRFront/Front:                 "SF#"
@@ -1180,7 +1192,7 @@
 *CloseUI: *DP2Printed
 
 *OpenUI *DP2Source/Tray: PickOne
-*OrderDependency: 101.2 JCLSetup *DP2Source
+*OrderDependency: 201.2 JCLSetup *DP2Source
 *DefaultDP2Source: DP2SAuto
 *DP2Source DP2SAuto/Auto:                 "0$"
 *DP2Source DP2STray1/Tray 1:              "1$"
@@ -1192,7 +1204,7 @@
 *CloseUI: *DP2Source
 
 *OpenUI *DP2Type/Paper Type: PickOne
-*OrderDependency: 101.3 JCLSetup *DP2Type
+*OrderDependency: 201.3 JCLSetup *DP2Type
 *DefaultDP2Type: DP2TIgnore
 *DP2Type DP2TIgnore/Ignore:               "0%0<22><0A>"
 *DP2Type DP2TAuto/Auto:                   "1%0<22><0A>"
@@ -1213,18 +1225,6 @@
 *CloseUI: *DP2Type
 
 *CloseGroup: DifferentPaper2
-
-*OpenGroup: FoldingSettings/Paper Folding Settings
-
-*OpenUI *ARFold/Fold: PickOne
-*OrderDependency: 100 AnySetup *ARFold
-*DefaultARFold: FoldOff
-*ARFold FoldOff/Off:				""
-*ARFold FoldInside/Half Fold - Inside:		"<</Fold [1 [0]]>> setpagedevice"
-*ARFold FoldOutside/Half Fold - Outside:	"<</Fold [1 [1]]>> setpagedevice"
-*CloseUI: *ARFold
-
-*CloseGroup: FoldingSettings
 
 *DefaultFont: Courier
 *Font AlbertusMT: Standard "(002.003)" Standard ROM
