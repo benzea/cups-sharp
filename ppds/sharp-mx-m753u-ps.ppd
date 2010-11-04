@@ -828,7 +828,7 @@
 *OpenUI *Filing/Filing: PickOne
 *OrderDependency: 10.0 JCLSetup *Filing
 *DefaultFiling: Normal
-*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A><0A>"
+*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A>"
 *Filing FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
 *Filing FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
@@ -1099,6 +1099,64 @@
 *CloseUI: *ARwmLocation
 
 *CloseGroup: Watermark
+
+*OpenGroup: DifferentPaper1/One Page Different
+
+*OpenUI *DP1Pos/Inserted Page Position: PickOne
+*OrderDependency: 100.0 JCLSetup *DP1Pos
+*DefaultDP1Pos: DP1PONone
+*DP1Pos DP1PONone/No Page:                   "@PJL COMMENT "
+*DP1Pos DP1POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
+*DP1Pos DP1POLast/Back Page:                   "@PJL SET BACKCOVER = <22>"
+*CloseUI: *DP1Pos
+
+*%CustomDP1Pos True: "@PJL SET INSERTSHEET = <22>\1"
+*%ParamCustomDP1Pos DP1POAny/Page: 1 int 0 255
+
+*OpenUI *DP1Printed/Printing on: PickOne
+*OrderDependency: 100.1 JCLSetup *DP1Printed
+*DefaultDP1Printed: DP1PRNo
+*DP1Printed DP1PRNo/No Printing:              "B#"
+*DP1Printed DP1PRFront/Front:                 "SF#"
+*DP1Printed DP1PRBack/Back:                   "SB#"
+*DP1Printed DP1PRBoth/Both:                   "D#"
+*CloseUI: *DP1Printed
+
+*OpenUI *DP1Source/Tray: PickOne
+*OrderDependency: 100.2 JCLSetup *DP1Source
+*DefaultDP1Source: DP1SAuto
+*DP1Source DP1SAuto/Auto:                 "0$"
+*DP1Source DP1STray1/Tray 1:              "1$"
+*DP1Source DP1STray2/Tray 2:              "2$"
+*DP1Source DP1STray3/Tray 3:              "3$"
+*DP1Source DP1STray4/Tray 4:              "4$"
+*DP1Source DP1SBypass/Bypass Tray:        "6$"
+*DP1Source DP1SInserter/Inserter:         "7$"
+*CloseUI: *DP1Source
+
+*OpenUI *DP1Type/Paper Type: PickOne
+*OrderDependency: 100.3 JCLSetup *DP1Type
+*DefaultDP1Type: DP1TIgnore
+*DP1Type DP1TIgnore/Ignore:               "0%0<22><0A>"
+*DP1Type DP1TAuto/Auto:                   "1%0<22><0A>"
+*DP1Type DP1TPlain/Plain:                 "2%0<22><0A>"
+*DP1Type DP1TLetterhead/Letterhead:       "3%0<22><0A>"
+*DP1Type DP1TRecycle/Recycle:             "4%0<22><0A>"
+*DP1Type DP1TPrePrint/Pre Print:          "5%0<22><0A>"
+*DP1Type DP1TPrePunch/Pre Punch:          "6%0<22><0A>"
+*DP1Type DP1TColor/Color:                 "7%0<22><0A>"
+*DP1Type DP1TBond/Bond:                   "8%0<22><0A>"
+*DP1Type DP1TLabel/Label:                 "9%0<22><0A>"
+*DP1Type DP1TTransparency/Transparency:  "10%0<22><0A>"
+*DP1Type DP1TTab/tab:                    "11%0<22><0A>"
+*DP1Type DP1TThin/Thin:                  "31%0<22><0A>"
+*DP1Type DP1TPostcard/Postcard:          "33%0<22><0A>"
+*DP1Type DP1TBond2/Bond2:                "34%0<22><0A>"
+*DP1Type DP1TGlossy/Glossy:              "37%0<22><0A>"
+*CloseUI: *DP1Type
+
+
+*CloseGroup: DifferentPaper1
 
 *OpenGroup: FoldingSettings/Paper Folding Settings
 

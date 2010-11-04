@@ -161,10 +161,10 @@ while True:
                 user_input = {}
             for option, orig_arg in buf:
                 if option is None:
-                    sys.stdout.write(line)
-
-                arg, new_input_needed = replace_argument(option, orig_arg, user_input)
-                sys.stdout.write("@PJL SET %s=%s\n" % (option, arg))
+                    sys.stdout.write(orig_arg)
+                else:
+                    arg, new_input_needed = replace_argument(option, orig_arg, user_input)
+                    sys.stdout.write("@PJL SET %s=%s\n" % (option, arg))
 
         sys.stdout.write(line)
         break
