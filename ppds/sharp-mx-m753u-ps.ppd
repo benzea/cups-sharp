@@ -376,9 +376,11 @@
 *UIConstraints: *OutputBin Output0		*ARStaple Staple5
 *UIConstraints: *OutputBin Output0		*ARStaple Staple6
 *UIConstraints: *OutputBin Output0		*ARStaple Staple7
+*UIConstraints: *OutputBin Output1		*ARStaple Staple7
 *UIConstraints: *OutputBin Output2		*ARStaple Staple5
 *UIConstraints: *OutputBin Output2		*ARStaple Staple6
 *UIConstraints: *OutputBin Output2		*ARStaple Staple7
+*UIConstraints: *OutputBin Output3		*ARStaple Staple7
 *UIConstraints: *OutputBin OutputSS		*ARStaple Staple5
 *UIConstraints: *OutputBin OutputSS		*ARStaple Staple6
 
