@@ -628,7 +628,7 @@
 	restore"
 *End
 
-*DefaultPaperDimension: Letter
+*DefaultPaperDimension: A4
 *PaperDimension Letter/Letter: "612.00 792.00"
 *PaperDimension Legal/Legal: "612.00 1008.00"
 *PaperDimension Ledger/Ledger: "792.00 1224.00"
@@ -708,7 +708,7 @@
 
 *OpenUI *Option1/Output Tray Options: PickOne
 *OrderDependency: 0.0 AnySetup *Option1
-*DefaultOption1: NotInstalled
+*DefaultOption1: SSFinisher
 *Option1 NotInstalled/Not Installed: ""
 *Option1 Finisher/Finisher: ""
 *Option1 T3Finisher/Finisher(3 Trays): ""
@@ -748,7 +748,7 @@
 
 *OpenUI *Option10/Authentication: PickOne
 *OrderDependency: 0.0 AnySetup *Option10
-*DefaultOption10: NoAuthentication
+*DefaultOption10: AccountAuthentication
 *Option10 NoAuthentication/No Authentication: ""
 *Option10 PINAuthentication/Authentication using PIN: ""
 *Option10 AccountAuthentication/Authentication using Username and Password: ""
