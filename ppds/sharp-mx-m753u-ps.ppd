@@ -1217,7 +1217,7 @@
 *DP2Type DP2TBond/Bond:                   "8%0<22><0A>"
 *DP2Type DP2TLabel/Label:                 "9%0<22><0A>"
 *DP2Type DP2TTransparency/Transparency:  "10%0<22><0A>"
-*DP2Type DP2TTab/tab:                    "11%0<22><0A>"
+*DP2Type DP2TTab/Tab:                    "11%0<22><0A>"
 *DP2Type DP2TThin/Thin:                  "31%0<22><0A>"
 *DP2Type DP2TPostcard/Postcard:          "33%0<22><0A>"
 *DP2Type DP2TBond2/Bond2:                "34%0<22><0A>"
