@@ -1162,7 +1162,7 @@
 *DP1Type DP1TBond/Bond:                   "8%0<22><0A>"
 *DP1Type DP1TLabel/Label:                 "9%0<22><0A>"
 *DP1Type DP1TTransparency/Transparency:  "10%0<22><0A>"
-*DP1Type DP1TTab/tab:                    "11%0<22><0A>"
+*DP1Type DP1TTab/Tab:                    "11%0<22><0A>"
 *DP1Type DP1TThin/Thin:                  "31%0<22><0A>"
 *DP1Type DP1TPostcard/Postcard:          "33%0<22><0A>"
 *DP1Type DP1TBond2/Bond2:                "34%0<22><0A>"
