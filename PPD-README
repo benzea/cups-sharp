@@ -62,5 +62,8 @@ and password. For this, add the following to the PPD:
 
 *CloseGroup: Authentication
 
+Please note, that it may be a good idea not to include the Custom option (the
+last two lines for each option). These never show up in many applications, and
+may cause trouble in others. Please refere to the BUGS section in the README.
 
 That should be all that is neccessary.
