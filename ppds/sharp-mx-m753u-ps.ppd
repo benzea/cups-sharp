@@ -531,6 +531,264 @@
 
 *% ---- USER TYPE1 - 7 -> All
 
+*% ---- Insert Page
+*UIConstraints: *DP1Pos DP1POFirst		*DP2Pos DP2POFirst
+*UIConstraints: *DP1Pos DP1POLast		*DP2Pos DP2POLast
+
+% DP1 Specific
+
+*UIConstraints: *Option6 NotInstalled		*DP1Source DP1A4LCT
+*UIConstraints: *Option6 NotInstalled		*DP1Source DP1A4LCT
+*UIConstraints: *Option6 A4LCC			*DP1Source DP1A3LCT
+*UIConstraints: *Option6 A3LCC			*DP1Source DP1A4LCT
+
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1STray1		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1STray2		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1STray3		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1STray4		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1SBypass		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1SInserter		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1A4LCT		*DP1Type DP1TGlossy
+
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TPlain
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TLetterhead
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TRecycle
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TPrePrint
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TPrePunch
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TColor
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TBond
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TLabel
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TTransparency
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TTab
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TThin
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TPostcard
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TBond2
+*UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TGlossy
+
+% DP2 Specific
+
+*UIConstraints: *Option6 NotInstalled		*DP2Source DP2A4LCT
+*UIConstraints: *Option6 NotInstalled		*DP2Source DP2A4LCT
+*UIConstraints: *Option6 A4LCC			*DP2Source DP2A3LCT
+*UIConstraints: *Option6 A3LCC			*DP2Source DP2A4LCT
+
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2STray1		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2STray2		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2STray3		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2STray4		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2SBypass		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2SInserter		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2A4LCT		*DP2Type DP2TGlossy
+
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TPlain
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TLetterhead
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TRecycle
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TPrePrint
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TPrePunch
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TColor
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TBond
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TLabel
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TTransparency
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TTab
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TThin
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TPostcard
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TBond2
+*UIConstraints: *DP2Source DP2A3LCT		*DP2Type DP2TGlossy
+
 *% =============================================================================
 
 *OpenUI *PageSize: PickOne
@@ -1119,7 +1377,7 @@
 *OpenUI *DP1Pos/Inserted Page Position: PickOne
 *OrderDependency: 200.0 JCLSetup *DP1Pos
 *DefaultDP1Pos: DP1PONone
-*DP1Pos DP1PONone/No Page:                   "@PJL COMMENT "
+*DP1Pos DP1PONone/No Page:                   "@PJL COMMENT <22>"
 *DP1Pos DP1POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
 *DP1Pos DP1POLast/Back Page:                   "@PJL SET BACKCOVER = <22>"
 *CloseUI: *DP1Pos
@@ -1146,6 +1404,8 @@
 *DP1Source DP1STray4/Tray 4:              "4$"
 *DP1Source DP1SBypass/Bypass Tray:        "6$"
 *DP1Source DP1SInserter/Inserter:         "7$"
+*DP1Source DP1A4LCT/A4 LCT:               "5$"
+*DP1Source DP1A3LCT/A3 LCT:               "8$"
 *CloseUI: *DP1Source
 
 *OpenUI *DP1Type/Paper Type: PickOne
@@ -1176,7 +1436,7 @@
 *OpenUI *DP2Pos/Inserted Page Position: PickOne
 *OrderDependency: 201.0 JCLSetup *DP2Pos
 *DefaultDP2Pos: DP2PONone
-*DP2Pos DP2PONone/No Page:                   "@PJL COMMENT "
+*DP2Pos DP2PONone/No Page:                   "@PJL COMMENT <22>"
 *DP2Pos DP2POFirst/Front Page:        "@PJL SET FRONTCOVER = <22>"
 *DP2Pos DP2POLast/Back Page:                   "@PJL SET BACKCOVER = <22>"
 *CloseUI: *DP2Pos
@@ -1203,6 +1463,8 @@
 *DP2Source DP2STray4/Tray 4:              "4$"
 *DP2Source DP2SBypass/Bypass Tray:        "6$"
 *DP2Source DP2SInserter/Inserter:         "7$"
+*DP2Source DP2A4LCT/A4 LCT:               "5$"
+*DP2Source DP2A3LCT/A3 LCT:               "8$"
 *CloseUI: *DP2Source
 
 *OpenUI *DP2Type/Paper Type: PickOne
