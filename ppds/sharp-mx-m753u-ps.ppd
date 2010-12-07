@@ -121,23 +121,23 @@
 
 *% **** Authentication
 
-*UIConstraints: *Option10 NoAuthentication	*AccountLogin ALDBusAsk
-*UIConstraints: *Option10 NoAuthentication	*AccountLogin ALInput
-*UIConstraints: *Option10 NoAuthentication	*AccountPassword APDBusAsk
-*UIConstraints: *Option10 NoAuthentication	*AccountPassword APDInput
-*UIConstraints: *Option10 NoAuthentication	*AccountNumber ANDBusAsk
-*UIConstraints: *Option10 NoAuthentication	*AccountNumber ANInput
+*UIConstraints: *OptionAuth NoAuthentication	*AccountLogin ALDBusAsk
+*UIConstraints: *OptionAuth NoAuthentication	*AccountLogin Custom
+*UIConstraints: *OptionAuth NoAuthentication	*AccountPassword APDBusAsk
+*UIConstraints: *OptionAuth NoAuthentication	*AccountPassword Custom
+*UIConstraints: *OptionAuth NoAuthentication	*AccountNumber ANDBusAsk
+*UIConstraints: *OptionAuth NoAuthentication	*AccountNumber Custom
 
-*UIConstraints: *Option10 PINAuthentication	*AccountLogin ALDBusAsk
-*UIConstraints: *Option10 PINAuthentication	*AccountLogin ALInput
-*UIConstraints: *Option10 PINAuthentication	*AccountPassword APDBusAsk
-*UIConstraints: *Option10 PINAuthentication	*AccountPassword APInput
-*UIConstraints: *Option10 PINAuthentication	*AccountNumber ANKeyNone
+*UIConstraints: *OptionAuth PINAuthentication	*AccountLogin ALDBusAsk
+*UIConstraints: *OptionAuth PINAuthentication	*AccountLogin Custom
+*UIConstraints: *OptionAuth PINAuthentication	*AccountPassword APDBusAsk
+*UIConstraints: *OptionAuth PINAuthentication	*AccountPassword Custom
+*UIConstraints: *OptionAuth PINAuthentication	*AccountNumber ANKeyNone
 
-*UIConstraints: *Option10 AccountAuthentication	*AccountNumber ANDBusAsk
-*UIConstraints: *Option10 AccountAuthentication	*AccountNumber ANInput
-*UIConstraints: *Option10 AccountAuthentication	*AccountLogin ALKeyNone
-*UIConstraints: *Option10 AccountAuthentication	*AccountPassword APKeyNone
+*UIConstraints: *OptionAuth AccountAuthentication	*AccountNumber ANDBusAsk
+*UIConstraints: *OptionAuth AccountAuthentication	*AccountNumber Custom
+*UIConstraints: *OptionAuth AccountAuthentication	*AccountLogin ALKeyNone
+*UIConstraints: *OptionAuth AccountAuthentication	*AccountPassword APKeyNone
 
 *% **** Option <---> Option ****************************************************
 *% ---- InputSlot <---> PageSize -----------------------------------------------
@@ -332,9 +332,9 @@
 
 *% ---- Filing
 
-*UIConstraints: *Filing FNormal			*FilingFolder FFInput
-*UIConstraints: *Filing FNormal			*FilingPin FPDBusAsk
-*UIConstraints: *Filing FNormal			*FilingPin FPInput
+*UIConstraints: *FilingType FNormal		*FilingFolder Custom
+*UIConstraints: *FilingType FNormal		*FilingPin FPDBusAsk
+*UIConstraints: *FilingType FNormal		*FilingPin Custom
 
 *% ---- OutputBin <---> PageSize -----------------------------------------------
 *% ---- Center Tray -> All
@@ -535,7 +535,7 @@
 *UIConstraints: *DP1Pos DP1POFirst		*DP2Pos DP2POFirst
 *UIConstraints: *DP1Pos DP1POLast		*DP2Pos DP2POLast
 
-% DP1 Specific
+*% DP1 Specific
 
 *UIConstraints: *Option6 NotInstalled		*DP1Source DP1A4LCT
 *UIConstraints: *Option6 NotInstalled		*DP1Source DP1A4LCT
@@ -662,7 +662,7 @@
 *UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TBond2
 *UIConstraints: *DP1Source DP1A3LCT		*DP1Type DP1TGlossy
 
-% DP2 Specific
+*% DP2 Specific
 
 *UIConstraints: *Option6 NotInstalled		*DP2Source DP2A4LCT
 *UIConstraints: *Option6 NotInstalled		*DP2Source DP2A4LCT
@@ -1006,13 +1006,13 @@
 *End
 *CloseUI: *Option9
 
-*OpenUI *Option10/Authentication: PickOne
-*OrderDependency: 0.0 AnySetup *Option10
-*DefaultOption10: AccountAuthentication
-*Option10 NoAuthentication/No Authentication: ""
-*Option10 PINAuthentication/Authentication using PIN: ""
-*Option10 AccountAuthentication/Authentication using Username and Password: ""
-*CloseUI: *Option10
+*OpenUI *OptionAuth/Authentication: PickOne
+*OrderDependency: 0.0 AnySetup *OptionAuth
+*DefaultOptionAuth: NoAuthentication
+*OptionAuth NoAuthentication/No Authentication: ""
+*OptionAuth PINAuthentication/Authentication using PIN: ""
+*OptionAuth AccountAuthentication/Authentication using Username and Password: ""
+*CloseUI: *OptionAuth
 
 *CloseGroup: InstallableOptions
 
@@ -1085,14 +1085,14 @@
 
 *OpenGroup: FilingControl/Filing
 
-*OpenUI *Filing/Filing: PickOne
+*OpenUI *FilingType/Filing: PickOne
 *OrderDependency: 10.0 JCLSetup *Filing
-*DefaultFiling: Normal
-*Filing FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A>"
-*Filing FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
-*Filing FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
-*Filing FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
-*CloseUI: *Filing
+*DefaultFilingType: FNormal
+*FilingType FNormal/Normal Print:               "@PJL SET HOLD = OFF<0A>@PJL SET FILING = OFF<0A>"
+*FilingType FAfter/Store after Printing:        "@PJL SET HOLD = ON<0A>@PJL SET FILING = PERMANENCE<0A>"
+*FilingType FHold/Store only:                   "@PJL SET HOLD = STORE<0A>@PJL SET FILING = PERMANENCE<0A>"
+*FilingType FProof/Print first copy and store:  "@PJL SET HOLD = PROOF<0A>@PJL SET FILING = PERMANENCE<0A>"
+*CloseUI: *FilingType
 
 *OpenUI *FilingFolder/Filing Folder: PickOne
 *OrderDependency: 10.1 JCLSetup *FilingFolder
