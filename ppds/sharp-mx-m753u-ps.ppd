@@ -1136,7 +1136,7 @@
 *OpenUI *Duplex/2-Side Printing: PickOne
 *OrderDependency: 70.0 AnySetup *Duplex
 *DefaultDuplex: None
-*Duplex None/Off: ""
+*Duplex None/Off: "<</Duplex false>> setpagedevice"
 *Duplex DuplexNoTumble/Flip on long edge: "<</Duplex true /Tumble false>> setpagedevice"
 *Duplex DuplexTumble/Flip on short edge: "<</Duplex true /Tumble true>> setpagedevice"
 *CloseUI: *Duplex
