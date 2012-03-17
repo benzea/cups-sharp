@@ -9,6 +9,7 @@ import re
 import fcntl
 import select
 import pwd
+import io
 
 # ****************************************
 
@@ -71,9 +72,11 @@ copies  = int(sys.argv[4])
 options = sys.argv[5]
 if len(sys.argv) > 6:
     filename=sys.argv[6]
-    fd = open(filename)
+    input_fd = open(filename)
 else:
-    fd = sys.stdin
+    input_fd = sys.stdin
+
+output_fd = sys.stdout
 
 spooltime=time.strftime("%a, %d %h %Y %H:%M:%S %z", time.gmtime())
 
@@ -129,7 +132,7 @@ def replace_argument(opt, arg, user_input=None):
 buf = []
 input_needed = None
 while True:
-    line = fd.readline()
+    line = input_fd.readline()
     if not line:
         sys.exit(0)
 
@@ -149,7 +152,7 @@ while True:
         if input_needed:
             buf.append((option, orig_arg))
         else:
-            sys.stdout.write("@PJL SET %s=%s\n" % (option, arg))
+            output_fd.write("@PJL SET %s=%s\n" % (option, arg))
         continue
 
     if line.startswith("@PJL ENTER"):
@@ -161,27 +164,29 @@ while True:
                 user_input = {}
             for option, orig_arg in buf:
                 if option is None:
-                    sys.stdout.write(orig_arg)
+                    output_fd.write(orig_arg)
                 else:
                     arg, new_input_needed = replace_argument(option, orig_arg, user_input)
-                    sys.stdout.write("@PJL SET %s=%s\n" % (option, arg))
+                    output_fd.write("@PJL SET %s=%s\n" % (option, arg))
 
-        sys.stdout.write(line)
+        output_fd.write(line)
         break
 
     if input_needed:
         buf.append((None, line))
     else:
-        sys.stdout.write(line)
+        output_fd.write(line)
 
-in_fd = sys.stdin.fileno()
+in_fd = input_fd.fileno()
 fl = fcntl.fcntl(in_fd, fcntl.F_GETFL)
-fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+fcntl.fcntl(in_fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
 
-out_fd = sys.stdout.fileno()
+out_fd = output_fd.fileno()
 fl = fcntl.fcntl(out_fd, fcntl.F_GETFL)
-fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+fcntl.fcntl(out_fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
 
+# We need to use io.open so that the BlockingIOError is raised.
+output_fd = io.open(out_fd, mode="bw", buffering=8192)
 
 buf = []
 
@@ -211,19 +216,25 @@ while (out_open and len(buf) > 0) or (out_open and in_open):
         if signal & (select.POLLHUP | select.POLLERR):
             if fd == in_fd:
                 # read the rest of the input.
-                buf.append(sys.stdin.read())
+                buf.append(input_fd.read())
                 in_open = False
             elif fd == out_fd:
                 out_open = False
         else:
             if fd == in_fd:
-                data = sys.stdin.read()
+                data = input_fd.read()
                 # recieved EOF, do not keep reading.
                 if len(data) == 0:
                     in_open = False
                 buf.append(data)
             elif fd == out_fd:
-                sys.stdout.write(buf.pop(0))
+                try:
+                    chars = output_fd.write(buf[0])
+                except io.BlockingIOError, e:
+                    # Try again with the characters that have not been written yet.
+                    buf[0] = buf[0][e.characters_written:]
+                else:
+                    buf.pop(0)
         break
 
 
