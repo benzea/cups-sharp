@@ -87,6 +87,11 @@ sharp-askpass.conf
  Copy into the dbus system bus configuration.
  /etc/dbus-1/system.d/
 
+NOTE: The sharp-askpass.conf file assumes that the printing pipeline
+is run under the user "lp". This may be different on your system (eg.
+arch linux uses the "daemon" user).
+If it differes edit the file to change the username.
+
 Then install the cups printer normally with the supplied PPD file.
 
 Security
