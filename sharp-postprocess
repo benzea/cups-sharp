@@ -177,6 +177,11 @@ while True:
     else:
         output_fd.write(line)
 
+# There appears to be a bug, the output buffer is not flushed
+# when enabling non-blocking IO. And then python tries to
+# write it *after* the fd is closed.
+output_fd.flush()
+
 in_fd = input_fd.fileno()
 fl = fcntl.fcntl(in_fd, fcntl.F_GETFL)
 fcntl.fcntl(in_fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
