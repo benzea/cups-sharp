@@ -6,8 +6,6 @@ authentication enabled. Sharp officially does not support this, but the
 encryption was successfully reverse engineered and it is therefore possible
 to implement it.
 
-NOTE: READ THE BUGS SECTION!
-
 Content:
  * How it works
  * Bugs
@@ -37,13 +35,6 @@ Bugs
 I don't know how sane it is to do dbus calls from a filter, it feels a bit
 wrong. A better solution might be to implement this as a cups backend
 instead.
-
-GTK+ has some bugs handling Cups Custom options. Please refere to
-https://bugzilla.gnome.org/show_bug.cgi?id=543520. There is a patch in the
-bug that fixes the issues mostly.
-Without the patch, GTK+ will likely *not work* at all. With the patch GTK+
-allows you to enter the username/password directly, or have the dbus dialog
-pop up after the print job has been send.
 
 Not all printer options may be working correctly with the PPD file.
 
