@@ -65,6 +65,14 @@ Dependencies
  * python Crypto module (python-crypto in debian)
  * PyGTK (python-gtk2 in debian)
 
+Distribution Related
+====================
+Fedora >= 22
+------------
+ dnf install python-crypto
+ dnf install pygtk2
+ dnf install dbus-python
+
 Installation
 ============
 
